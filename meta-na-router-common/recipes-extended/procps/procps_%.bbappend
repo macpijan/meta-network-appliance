@@ -5,5 +5,5 @@ SRC_URI_append = " \
 "
 
 do_install_append() {
-  install -m 0644 ${WORKDIR}/10-ipv4-routing.conf ${sysconfdir}/sysctl.d/
+  install -m 0644 ${WORKDIR}/10-ipv4-routing.conf ${D}${sysconfdir}/sysctl.d/
 }
