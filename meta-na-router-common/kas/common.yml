@@ -1,0 +1,80 @@
+header:
+  version: 8
+
+repos:
+  meta-network-appliance:
+    layers:
+      meta-na-router-common:
+      meta-na-webui:
+
+  poky:
+    url: https://git.yoctoproject.org/git/poky
+    refspec: d45ec07e5e8707bd10ea45287cab4271a71ba855
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+    patches:
+      meta-otab:
+        repo: meta-otab
+        path: patches/001-otab-poky-dunfell.patch
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    refspec: f2d02cb71eaff8eb285a1997b30be52486c160ae
+    layers:
+      meta-oe:
+      meta-filesystems:
+      meta-networking:
+      meta-python:
+      meta-webserver:
+
+  meta-virtualization:
+    url: https://git.yoctoproject.org/git/meta-virtualization
+    refspec: ff997b6b3ba800978546098ab3cdaa113b6695e1
+
+  meta-pcengines:
+    url: https://github.com/pcengines/meta-pcengines
+    refspec: 1907b2f77e1568a6271800e88609026be45b766a
+
+  meta-swupdate:
+    url: https://github.com/sbabic/meta-swupdate.git
+    refspec: 3f9c381c5ceafb43e73a35eb44045dac0f93a864
+    patches:
+      meta-otab:
+        repo: meta-otab
+        path: patches/002-otab-task-swuimage.patch
+
+  meta-otab:
+    url: git@gitlab.com:3mdeb/embedded-firmware-team/meta-otab.git
+    refspec: 227c8071acf08b32e337db915e6ed06abf866307
+    layers:
+      meta-otab-common:
+      meta-otab-grub:
+
+  meta-readonly-rootfs-overlay:
+    url: git@github.com:3mdeb/meta-readonly-rootfs-overlay.git
+    refspec: 4eca5115f59c4aa840734e05a730d73d7b54ed2c
+
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+local_conf_header:
+  standard: |
+    CONF_VERSION = "1"
+    PACKAGE_CLASSES = "package_rpm"
+    SDKMACHINE = "x86_64"
+  diskmon: |
+    BB_DISKMON_DIRS = "\
+        STOPTASKS,${TMPDIR},1G,100K \
+        STOPTASKS,${DL_DIR},1G,100K \
+        STOPTASKS,${SSTATE_DIR},1G,100K \
+        STOPTASKS,/tmp,100M,100K \
+        ABORT,${TMPDIR},100M,1K \
+        ABORT,${DL_DIR},100M,1K \
+        ABORT,${SSTATE_DIR},100M,1K \
+        ABORT,/tmp,10M,1K"
+  dandling_bbappend: |
+    BB_DANGLINGAPPENDS_WARNONLY ?= "true"

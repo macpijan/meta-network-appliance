@@ -6,12 +6,13 @@ LICENSE = "MIT"
 inherit packagegroup
 
 PACKAGES = " \
-  ${PN}-common \
+  ${PN}-network \
   ${PN}-firmware \
+  ${PN}-system \
   ${PN}-utils \
 "
 
-RDEPENDS_${PN}-common = " \
+RDEPENDS_${PN}-network = " \
   ${PN}-firmware \
   ${PN}-utils \
   crda \
@@ -40,4 +41,11 @@ RDEPENDS_${PN}-utils = " \
   net-tools \
   procps \
   util-linux \
+"
+
+RDEPENDS_${PN}-system = " \
+  packagegroup-core-base-utils \
+  packagegroup-core-boot \
+  chrony \
+  chronyc \
 "
