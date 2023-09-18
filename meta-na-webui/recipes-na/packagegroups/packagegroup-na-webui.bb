@@ -10,7 +10,7 @@ PACKAGES = " \
   ${PN}-docker \
 "
 
-RDEPENDS_${PN}-base = " \
+RDEPENDS:${PN}-base = " \
   cockpit \
   cockpit-systemd \
   cockpit-shell \
@@ -20,7 +20,7 @@ RDEPENDS_${PN}-base = " \
   firewalld \
 "
 
-RDEPENDS_${PN}-docker = " \
+RDEPENDS:${PN}-docker = " \
   cockpit-docker \
   docker-ce \
   python3-docker-compose \

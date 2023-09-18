@@ -11,7 +11,7 @@ PACKAGES = " \
   ${PN}-utils \
 "
 
-RDEPENDS_${PN}-common = " \
+RDEPENDS:${PN}-common = " \
   ${PN}-firmware \
   ${PN}-utils \
   crda \
@@ -23,12 +23,12 @@ RDEPENDS_${PN}-common = " \
   usb-modeswitch \
 "
 
-RDEPENDS_${PN}-firmware = " \
+RDEPENDS:${PN}-firmware = " \
   linux-firmware-ath9k \
   linux-firmware-ath10k \
 "
 
-RDEPENDS_${PN}-utils = " \
+RDEPENDS:${PN}-utils = " \
   bind-utils \
   coreutils \
   findutils \

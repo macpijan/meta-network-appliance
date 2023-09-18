@@ -1,1 +1,1 @@
-PACKAGECONFIG_append = " dashboard"
+PACKAGECONFIG:append = " dashboard"

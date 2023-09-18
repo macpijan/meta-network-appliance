@@ -1,11 +1,11 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI_append = " \
+SRC_URI:append = " \
   file://unmanaged.conf \
 "
 
-PACKAGECONFIG_append = " wifi modemmanager"
+PACKAGECONFIG:append = " wifi modemmanager"
 
-do_install_append() {
+do_install:append() {
   install -m 0644 ${WORKDIR}/unmanaged.conf ${D}${sysconfdir}/NetworkManager/conf.d/
 }
